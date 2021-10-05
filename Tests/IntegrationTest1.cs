@@ -28,10 +28,15 @@ namespace Tests
         public IntegrationTest1()
         {
             string hostname = Environment.GetEnvironmentVariable("functionHostName");
-            if(hostname == null)
+            string apikey = Environment.GetEnvironmentVariable("functionApiKey");
+
+            if (hostname == null)
                 hostname  = $"http://localhost:{7071}";
             client = new HttpClient();
             client.BaseAddress = new Uri(hostname);
+            
+            if(apikey != null)
+                client.DefaultRequestHeaders.Add("api-key", apikey);
         }
 
         [Fact]
