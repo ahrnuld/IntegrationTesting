@@ -85,15 +85,3 @@ stages:
   displayName: Integration tests
   dependsOn: Deploy
   condition: succeeded()
-
-  jobs:
-  - job: Test
-    displayName: Integration tests
-    pool:
-      vmImage: $(vmImageName)
-    steps:
-    - task: DotNetCoreCLI@2
-      displayName: Run tests
-      inputs:
-        command: test
-        projects: $(integrationTestDirectory)/*.csproj
