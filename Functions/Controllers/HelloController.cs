@@ -30,7 +30,7 @@ namespace Functions
             Summary = "Greetings method", 
             Description = "This shows a welcome message.", 
             Visibility = OpenApiVisibilityType.Important)]
-        public HttpResponseData HelloGet([HttpTrigger(AuthorizationLevel.Function, "get", Route = "Hello")] HttpRequestData req,
+        public HttpResponseData HelloGet([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "Hello")] HttpRequestData req,
             FunctionContext executionContext)
         {
             logger.LogInformation("C# HTTP trigger function processed a request.");
