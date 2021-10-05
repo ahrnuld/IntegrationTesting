@@ -48,7 +48,7 @@ namespace Tests
         [Fact]
         public void TestGet()
         {
-            HttpResponseMessage response = client.GetAsync("api/Hello").Result;
+            HttpResponseMessage response = client.GetAsync($"api/Hello{apiKey}").Result;
 
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
@@ -77,7 +77,7 @@ namespace Tests
         public void TestPostTheorySuccess(HelloBody hello)
         {
             HttpContent data = new StringContent(JsonConvert.SerializeObject(hello), Encoding.UTF8, "application/json");
-            HttpResponseMessage response = client.PostAsync("api/Hello", data).Result;
+            HttpResponseMessage response = client.PostAsync($"api/Hello{apiKey}", data).Result;
 
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
@@ -89,7 +89,7 @@ namespace Tests
         [Fact]
         public void TestPostFailure()
         {
-            HttpResponseMessage response = client.PostAsync("api/Hello", null).Result;
+            HttpResponseMessage response = client.PostAsync($"api/Hello{apiKey}", null).Result;
 
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
         }
