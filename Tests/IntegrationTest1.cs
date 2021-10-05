@@ -27,8 +27,11 @@ namespace Tests
         private HttpClient client { get; }
         public IntegrationTest1()
         {
+            string hostname = Environment.GetEnvironmentVariable("functionHostName");
+            if(hostname == null)
+                hostname  = $"http://localhost:{7071}";
             client = new HttpClient();
-            client.BaseAddress = new Uri(Environment.GetEnvironmentVariable("functionHostName"));
+            client.BaseAddress = new Uri(hostname);
         }
 
         [Fact]
