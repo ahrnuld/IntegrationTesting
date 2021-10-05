@@ -43,7 +43,7 @@ namespace Functions
         }
 
         [Function("HelloPost")]
-        public HttpResponseData HelloPost([HttpTrigger(AuthorizationLevel.Function, "post", Route = "Hello")] 
+        public HttpResponseData HelloPost([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "Hello")] 
         HttpRequestData req,
             FunctionContext executionContext)
         {
