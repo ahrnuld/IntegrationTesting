@@ -19,6 +19,10 @@ variables:
   # Working Directory
   workingDirectory: '$(System.DefaultWorkingDirectory)/Functions'
 
+  # Test directory
+  integrationTestDirectory: '$(System.DefaultWorkingDirectory)/Tests'
+  functionHostName: 'https://pipelinetest3.azurewebsites.net'
+
 stages:
 - stage: Build
   displayName: Build stage
@@ -74,3 +78,20 @@ stages:
               appType: functionApp
               appName: $(functionAppName)
               package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
+
+- stage: Test
+  displayName: Integration tests
+  dependsOn: Deploy
+  condition: succeeded()
+
+  jobs:
+  - job: Test
+    displayName: Integration tests
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - task: DotNetCoreCLI@2
+      displayName: Run tests
+      inputs:
+        command: test
+        projects: $(integrationTestDirectory)/*.csproj
