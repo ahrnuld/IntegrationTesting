@@ -22,8 +22,11 @@ variables:
   # Test directory
   integrationTestDirectory: '$(System.DefaultWorkingDirectory)/Tests'
 
-  # Test hostname
+  # Test api key
   functionHostName: 'https://pipelinetest3.azurewebsites.net'
+
+  # Test hostname
+  functionApiKey: 'IveL4Z61ha4m8N/pDNY4GIPo5zJAQiyGnzgXD8aTlRWAHfqxTmJe5Q=='
 
 stages:
 - stage: Build
