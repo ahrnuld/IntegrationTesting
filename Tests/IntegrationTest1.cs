@@ -25,18 +25,24 @@ namespace Tests
     public class IntegrationTest1
     {
         private HttpClient client { get; }
+        private string apiKey { get; }
         public IntegrationTest1()
         {
             string hostname = Environment.GetEnvironmentVariable("functionHostName");
-            string apikey = Environment.GetEnvironmentVariable("functionApiKey");
 
             if (hostname == null)
                 hostname  = $"http://localhost:{7071}";
             client = new HttpClient();
             client.BaseAddress = new Uri(hostname);
-            
-            if(apikey != null)
-                client.DefaultRequestHeaders.Add("api-key", apikey);
+
+            string apiKeyVariable = Environment.GetEnvironmentVariable("functionApiKey");
+            if (apiKeyVariable != null) {
+                apiKey = $"?code={apiKeyVariable}";
+            } 
+            else
+            {
+                apiKey = "";
+            }
         }
 
         [Fact]
@@ -57,7 +63,7 @@ namespace Tests
             string testName = "Mark";
             HelloBody hello = new HelloBody(testName);
             HttpContent data = new StringContent(JsonConvert.SerializeObject(hello), Encoding.UTF8, "application/json");
-            HttpResponseMessage response = client.PostAsync("api/Hello", data).Result;
+            HttpResponseMessage response = client.PostAsync($"api/Hello{apiKey}", data).Result;
 
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
