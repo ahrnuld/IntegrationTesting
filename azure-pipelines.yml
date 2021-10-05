@@ -19,8 +19,9 @@ variables:
   # Working Directory
   workingDirectory: '$(System.DefaultWorkingDirectory)/Functions'
 
-  integrationTestDirectory: '$(System.DefaultWorkingDirectory)/Tests'
-  functionHostName: 'https://pipelinetest3.azurewebsites.net'
+  # Test directory
+  integrationTestDirectory: '$(System.DefaultWorkingDirectory)/Tests'
+  functionHostName: 'https://pipelinetest3.azurewebsites.net'
 
 stages:
 - stage: Build
