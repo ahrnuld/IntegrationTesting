@@ -8,7 +8,7 @@ trigger:
 
 variables:
   # Azure Resource Manager connection created during pipeline creation
-  azureSubscription: '9a37c893-30c7-4068-80f6-5e69ef6dd3e0'
+  azureSubscription: 'd3da86cb-0190-4251-ae11-ffc0e3fe8b52'
 
   # Function app name
   functionAppName: 'integrationTesting'
