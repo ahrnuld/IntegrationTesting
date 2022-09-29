@@ -11,7 +11,7 @@ variables:
   azureSubscription: 'd3da86cb-0190-4251-ae11-ffc0e3fe8b52'
 
   # Function app name
-  functionAppName: 'integrationTesting'
+  functionAppName: 'marksapp'
 
   # Agent VM image name
   vmImageName: 'vs2017-win2016'
@@ -20,10 +20,10 @@ variables:
   workingDirectory: '$(System.DefaultWorkingDirectory)/Functions'
 
   #API key
-  functionApiKey: '2v1bEi56MC68pzsQBzCgXhFVLqaky7tPcatP3GqILIpYBoijRwoiPQ=='
+  functionApiKey: '_WreEFiK8LH7fkjRU54kJ4ZICTopCw23oSwcmNsQEJhJAzFuzFDBdw=='
 
   # hostname
-  functionHostName: 'https://integrationtesting.azurewebsites.net'
+  functionHostName: 'https://marksapp.azurewebsites.net'
 
   # Test directory
   integrationTestDirectory: '$(System.DefaultWorkingDirectory)/Tests'
